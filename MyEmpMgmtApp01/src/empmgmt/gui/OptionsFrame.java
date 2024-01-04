@@ -39,6 +39,8 @@ public class OptionsFrame extends javax.swing.JFrame {
         rbtnShowEmp = new javax.swing.JRadioButton();
         rbtnQuit = new javax.swing.JRadioButton();
         btnProceed = new javax.swing.JButton();
+        rbtnUpdate = new javax.swing.JRadioButton();
+        rbtnDelete = new javax.swing.JRadioButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -84,6 +86,16 @@ public class OptionsFrame extends javax.swing.JFrame {
             }
         });
 
+        buttonGroup1.add(rbtnUpdate);
+        rbtnUpdate.setFont(new java.awt.Font("sansserif", 1, 14)); // NOI18N
+        rbtnUpdate.setForeground(new java.awt.Color(255, 255, 255));
+        rbtnUpdate.setText("Update Employee");
+
+        buttonGroup1.add(rbtnDelete);
+        rbtnDelete.setFont(new java.awt.Font("sansserif", 1, 14)); // NOI18N
+        rbtnDelete.setForeground(new java.awt.Color(255, 255, 255));
+        rbtnDelete.setText("Delete Employee");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -97,16 +109,19 @@ public class OptionsFrame extends javax.swing.JFrame {
                         .addGap(35, 35, 35)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(rbtnShowEmp)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 88, Short.MAX_VALUE)
-                                .addComponent(btnProceed))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(rbtnQuit)
                                     .addComponent(rbtnSearchEmp)
                                     .addComponent(rbtnAddEmp))
-                                .addGap(0, 0, Short.MAX_VALUE)))))
-                .addGap(38, 38, 38))
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(rbtnShowEmp)
+                                    .addComponent(rbtnUpdate)
+                                    .addComponent(rbtnDelete)
+                                    .addComponent(rbtnQuit))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 83, Short.MAX_VALUE)
+                                .addComponent(btnProceed)))))
+                .addGap(36, 36, 36))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -115,18 +130,22 @@ public class OptionsFrame extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addGap(50, 50, 50)
                 .addComponent(rbtnAddEmp)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(rbtnSearchEmp)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(51, 51, 51)
+                        .addGap(27, 27, 27)
                         .addComponent(btnProceed))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(rbtnSearchEmp)
-                        .addGap(18, 18, 18)
-                        .addComponent(rbtnShowEmp)))
-                .addGap(18, 18, 18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(rbtnShowEmp)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(rbtnUpdate)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(rbtnDelete)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(rbtnQuit)
-                .addContainerGap(60, Short.MAX_VALUE))
+                .addContainerGap(48, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -166,6 +185,14 @@ public class OptionsFrame extends javax.swing.JFrame {
         else if (rbtnShowEmp.isSelected())
         {
             userChoiceFrame = new ViewAllEmployeeFrame();
+        }
+        else if (rbtnUpdate.isSelected())
+        {
+            userChoiceFrame = new UpdateEmployeeFrame();
+        }
+        else if (rbtnDelete.isSelected())
+        {
+            userChoiceFrame = new DeleteEmployeeForm();
         }
         else if (rbtnQuit.isSelected())
         {
@@ -218,9 +245,11 @@ public class OptionsFrame extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JRadioButton rbtnAddEmp;
+    private javax.swing.JRadioButton rbtnDelete;
     private javax.swing.JRadioButton rbtnQuit;
     private javax.swing.JRadioButton rbtnSearchEmp;
     private javax.swing.JRadioButton rbtnShowEmp;
+    private javax.swing.JRadioButton rbtnUpdate;
     // End of variables declaration//GEN-END:variables
 
     private boolean validateInput()
@@ -228,7 +257,9 @@ public class OptionsFrame extends javax.swing.JFrame {
         if (rbtnAddEmp.isSelected() == false 
                 && rbtnQuit.isSelected() == false
                 && rbtnSearchEmp.isSelected() == false
-                && rbtnShowEmp.isSelected() == false)
+                && rbtnShowEmp.isSelected() == false
+                && rbtnDelete.isSelected() == false
+                && rbtnUpdate.isSelected() == false)
             return (false);
         else
             return (true);

@@ -36,6 +36,21 @@ public class EmpDAO
         return (result == 1);
     }
     
+    public static boolean updateEmployee(Employee e) throws SQLException {
+    Connection conn = DBconnection.getConnection();
+
+    // Use the UPDATE statement instead of INSERT
+    PreparedStatement ps = conn.prepareStatement("UPDATE Employees SET Ename = ?, salary = ? WHERE Empno = ?");
+    ps.setString(1, e.getEmpName());
+    ps.setDouble(2, e.getEmpSal());
+    ps.setInt(3, e.getEmpNo());
+
+    int result = ps.executeUpdate();
+
+    return (result == 1);
+    }
+
+    
     public static Employee findEmployeeById(int empno) throws SQLException
     {
         Connection conn = DBconnection.getConnection();
@@ -73,6 +88,16 @@ public class EmpDAO
         return empList;
     }
     
+    public static boolean deleteEmployeeById(int empId) throws SQLException {
+    Connection conn = DBconnection.getConnection();
 
+    // Use the DELETE statement to delete an employee by ID
+    PreparedStatement ps = conn.prepareStatement("DELETE FROM Employees WHERE Empno = ?");
+    ps.setInt(1, empId);
+
+    int result = ps.executeUpdate();
+
+    return (result == 1);
+    }
     
 }
